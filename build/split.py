@@ -1,9 +1,5 @@
-#!/usr/bin/env python2.7
-
 import glob
 import json
-import os
-import re
 
 
 def code_cell(source=None):
@@ -24,20 +20,20 @@ def question_cell(text):
     }
 
 
-def main():
-    session_cells = {n: [] for n in range(1, 6 + 1)}
-    f = open(os.path.dirname(os.path.abspath(__file__)) + '/../All.ipynb')
-    j = json.load(f)
-    cells = j['cells']
-    for cell in cells:
-        source = ''.join(cell['source'])
-        m = re.search(r'# +(\d+)\. ', source.strip())
-        if not m:
-            continue
-        n = int(m.group(1))
-        session_cells[n].append(cell)
-    for n, cells in sorted(session_cells.items()):
-        print('Session {}: {} cells'.format(n, len(cells)))
+# def main():
+#     session_cells = {n: [] for n in range(1, 6 + 1)}
+#     f = open(os.path.dirname(os.path.abspath(__file__)) + '/../All.ipynb')
+#     j = json.load(f)
+#     cells = j['cells']
+#     for cell in cells:
+#         source = ''.join(cell['source'])
+#         m = re.search(r'# +(\d+)\. ', source.strip())
+#         if not m:
+#             continue
+#         n = int(m.group(1))
+#         session_cells[n].append(cell)
+#     for n, cells in sorted(session_cells.items()):
+#         print('Session {}: {} cells'.format(n, len(cells)))
 
 
 def convert(filename):
